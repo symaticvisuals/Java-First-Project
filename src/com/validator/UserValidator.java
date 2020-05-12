@@ -12,29 +12,18 @@ import java.lang.Exception;
 	{
 	 public void nameValidator(String userid, String password)
 		{
-		System.out.println("enter Username:"+userid);
-		System.out.println("enter password:"+password);
 		Properties prop = new Properties();
-		String input="exception.properties";
-		InputStream inputstream=getClass().getClassLoader().getResourceAsStream("D:\\Project\\configs\\constants\\exception.properties");
-		
-		
-		
+		FileInputStream input=null;
+		//Logger logger = Logger.getLogger(NameValidator.class);
+		//PropertyConfigurator.configure("/home/sandeep/Documents/java_prg/guidedprj/configs/logger/logger.properties");
 		try{
-			
-			if(inputstream !=null)
-		{
-			prop.load(inputstream);
-		}
-		else
-		{
-			throw new FileNotFoundException(input);
-		}
+			input = new FileInputStream("D:\\Project\\configs\\constants\\exception.properties");
+			prop.load(input);
 			missingusername(userid);
 			missingpassword(password);
 			missingcharacter(userid);
 			invalidusername(userid);
-			weakpassword(password);
+			
 	       }
 	    catch(MissingException e)
 	       {
@@ -49,12 +38,12 @@ import java.lang.Exception;
 				System.out.println(s);
 				
 		}
-		catch(WeakPasswordException e)
-		{
-				String s = prop.getProperty("weakpasswordMessage");
-				System.out.println(s);
+		//catch(WeakPasswordException e)
+		//{
+				//String s = prop.getProperty("weakpasswordMessage");
+				//System.out.println(s);
 				
-		}
+		//}
 		catch(Exception e)
 		{
 			System.out.println(e);
